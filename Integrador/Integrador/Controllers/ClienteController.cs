@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Integrador.Modelo;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace Integrador.Controllers
 {
-    public class ClienteController:Conexion.Conexion
+    public class ClienteController : Conexion.Conexion
     {
         private static ClienteController instance;
         public static ClienteController GetInstance()
@@ -29,7 +31,6 @@ namespace Integrador.Controllers
             comando.Parameters.AddWithValue("@telefono", cliente.Telefono);
             comando.Parameters.AddWithValue("@email", cliente.Email);
             comando.Parameters.AddWithValue("@fechaNacimiento", cliente.FechaDeNacimiento);
-
             comando.ExecuteNonQuery();
 
             cerrarConexion();
@@ -39,7 +40,7 @@ namespace Integrador.Controllers
 
             SqlCommand comando = new SqlCommand();
             comando.Connection = abrirConexion();
-            comando.CommandText = "UPDATE Clientes SET ci = @ci, nombre = @nombre, direccion=@direccion,telefono=@telefono,email=@email,fechaDeNacimiento=@fechaNacimiento Where ci = @ci";
+            comando.CommandText = "UPDATE Cliente SET ci = @ci, nombre = @nombre, direccion=@direccion,telefono=@telefono,email=@email,fechaDeNacimiento=@fechaNacimiento Where ci = @ci";
 
             comando.Parameters.AddWithValue("@ci", clienteAModificar.Ci);
             comando.Parameters.AddWithValue("@nombre", clienteAModificar.Nombre);
@@ -57,7 +58,7 @@ namespace Integrador.Controllers
             List<Modelo.Cliente> nuevaLista = new List<Modelo.Cliente>();
             SqlCommand comando = new SqlCommand();
             comando.Connection = abrirConexion();
-            comando.CommandText = "SELECT * FROM Clientes";
+            comando.CommandText = "SELECT * FROM Cliente";
 
             SqlDataReader reader = comando.ExecuteReader();
             if (reader.HasRows)
@@ -77,6 +78,29 @@ namespace Integrador.Controllers
             cerrarConexion();
             return nuevaLista;
         }
-       
+        public Cliente darClientexCi(int ci)
+        {
+            Cliente pCliente = new Modelo.Cliente();
+            SqlCommand comando = new SqlCommand();
+            comando.Connection = abrirConexion();
+            comando.CommandText = "select * from Cliente where ci=@ci";
+            comando.Parameters.AddWithValue("@ci", ci);
+            SqlDataReader reader = comando.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    pCliente.Ci = (int.Parse(reader["ci"].ToString()));
+                    pCliente.Nombre = reader["nombre"].ToString();
+                    pCliente.Direccion = reader["direccion"].ToString();
+                    pCliente.Telefono = (int.Parse(reader["telefono"].ToString()));
+                    pCliente.Email = reader["email"].ToString();
+                    pCliente.FechaDeNacimiento = DateTime.Parse(reader["fechaDeNacimiento"].ToString());
+                }
+            }
+            cerrarConexion();
+            return pCliente;
+        }
+
     }
 }

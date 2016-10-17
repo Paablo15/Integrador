@@ -185,6 +185,7 @@
     <Compile Include="Modelo\Destino.cs" />
     <Compile Include="Modelo\DestinoExcursion.cs" />
     <Compile Include="Modelo\DisenioExcursion.cs" />
+    <Compile Include="Modelo\Empresa.cs" />
     <Compile Include="Modelo\Excursion.cs" />
     <Compile Include="Modelo\Transporte.cs" />
     <Compile Include="Modelo\Venta.cs" />

@@ -9,42 +9,76 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="container">
-        <div class="row">
-        <div class="">
+        <div class="container">
 
-        Nombre
-        <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
-        <br />
-        Cedula
-        <asp:TextBox ID="txtCedula" runat="server" ></asp:TextBox>
-        <br />
-        Direccion
-        <asp:TextBox ID="txtDireccion" runat="server"></asp:TextBox>
-        <br />
-        Telefono
-        <asp:TextBox ID="txtTelefono" runat="server"></asp:TextBox>
-        <br />
-        Email
-        <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-        <br />
-        Fecha de nacimiento
-        <asp:TextBox ID="txtFechaNacimiento" runat="server" TextMode="Date"></asp:TextBox>
+            <div class="starter-template">
+                <h1>Cliente</h1>
+                <div class="row">
+                    <div class="form-horizontal">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <p>Nombre</p>
+                                <div class="col-md-10">
+                                    <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <p>Cedula</p>
+                                <div class="col-md-10">
+                                    <asp:TextBox ID="txtCedula" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <p>Direccion</p>
+                                <div class="col-md-10">
+                                    <asp:TextBox ID="txtDireccion" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <p>Telefono</p>
+                                <div class="col-md-10">
+                                    <asp:TextBox ID="txtTelefono" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <p>Email</p>
+                                <div class="col-md-10">
+                                    <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <p>Fecha de nacimiento</p>
+                                <div class="col-md-10">
+                                    <asp:TextBox ID="txtFechaNacimiento" runat="server" TextMode="Date"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <asp:Button class="btn btn-primary" ID="btnAltaCliente" runat="server" Text="Dar de alta" OnClick="btnAltaCliente_Click" />
+                                    <asp:Button class="btn btn-primary" ID="btnModificarCliente" runat="server" Text="Modificar" OnClick="btnModificarCliente_Click" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lista de Clientes</h2>
+                                <div class="col-md-10">
+
+                                    <asp:GridView ID="gvClientes" runat="server" OnSelectedIndexChanged="gvClientes_SelectedIndexChanged">
+                                        <Columns>
+                                            <asp:CommandField ShowSelectButton="True" ButtonType="Button"></asp:CommandField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <br />
-        <br />
-        <br />
-        <asp:Button class="btn btn-primary" ID="btnAltaCliente" runat="server" Text="Dar de alta" />
-        <asp:Button class="btn btn-primary" ID="btnModificarCliente" runat="server" Text="Modificar" />
-        <br />
-        <br />
-        </div>
-    </div>
-        <asp:GridView ID="GridView1" runat="server">
-            <Columns>
-                <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True"></asp:CommandField>
-            </Columns>
-        </asp:GridView>
+
     </form>
 </body>
 </html>

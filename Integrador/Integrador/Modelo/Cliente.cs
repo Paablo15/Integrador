@@ -56,14 +56,31 @@ namespace Integrador.Modelo
         {
 
         }
-        public void agregarCliente() {
+        public Cliente(int ci, string nombre, string direccion, int telefono, string email, DateTime fecha)
+        {
+            Nombre = nombre;
+            Ci = ci;
+            Direccion = direccion;
+            Telefono = telefono;
+            Email = email;
+            FechaDeNacimiento = fecha;
+        }
+        public void agregarCliente()
+        {
             ClienteController.GetInstance().agregarCliente(this);
         }
-        public void modificarCliente() {
+        public void modificarCliente()
+        {
             ClienteController.GetInstance().modificarCliente(this);
         }
-        public List<Cliente> todosClientes() {
+        public static List<Cliente> todosClientes()
+        {
             return ClienteController.GetInstance().listarCliente();
+        }
+        public static Cliente darClienteXCi(int ci)
+        {
+
+            return ClienteController.GetInstance().darClientexCi(ci);
         }
     }
 
